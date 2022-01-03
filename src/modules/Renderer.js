@@ -1,38 +1,76 @@
 import * as THREE from 'three';
 
 export class Renderer extends HTMLElement {
-    static get observedAttributes() { 
-        return ['scene', 'camera']; 
-    }
+    // static get observedAttributes() { 
+    //     return ['scene', 'camera']; 
+    // }
 
     constructor() {
         super();
-        this.renderer = null;
-        this.camera = null;
-        this.scene = null;
+        this.worldRenderer = null;
+        this.worldCamera = null;
+        this.worldScene = null;
         console.log('3d renderer constructor');
     }
     connectedCallback() {
         // console.log('connected', document.querySelectorAll('scene-3d'))
     }
-    setRenderer() {
+    async setRenderer() {
         console.log('set renderer called');
-        this.renderer = new THREE.WebGLRenderer();
-        this.renderer.setSize( window.innerWidth, window.innerHeight );
+        this.worldRenderer = new THREE.WebGLRenderer();
+        this.worldRenderer.setSize( window.innerWidth, window.innerHeight );
         const world = document.querySelector('world-3d');
-        world.appendChild( this.renderer.domElement );
-        // this.tick();
+        await world.appendChild( this.worldRenderer.domElement );
+        this.tick();
     }
 
-    attributeChangedCallback(name, oldValue, newValue) {
-        console.log('Custom square element attributes changed.');
-        console.log('attributes changed');
+    // attributeChangedCallback(attribute, oldValue, newValue) {
+    //     this[attribute] = JSON.parse(newValue);
+    //     this.checkRequiredAttributes();
+    // }
+    
+    /* Scene */
+    get scene() {
+        return this.worldScene;
+    }
+
+    set scene(val) {
+        this.worldScene = val;
+        this.checkRequiredAttributes();
+    }
+
+    /* Camera */
+    get camera() {
+        return this.worldCamera;
+    }
+
+    set camera(val) {
+        this.worldCamera = val;
+        this.checkRequiredAttributes();
+    }
+
+    /* Renderer */
+    get renderer() {
+        return this.worldRenderer;
+    }
+
+    set renderer(val) {
+        this.worldRenderer = val;
+    }
+
+    checkRequiredAttributes() {
+        if (this.worldScene && this.worldCamera) {
+            this.setRenderer();
+        }
     }
     
-    // tick() {
-    //     requestAnimationFrame( tick );
-    //     renderer.render( scene, camera );
-    // };
+    tick() {
+        requestAnimationFrame(() => {
+            this.tick();
+        });
+        // console.log(JSON.stringify(this.camera));
+        this.renderer.render(this.worldScene, this.worldCamera);
+    };
 
 }
 

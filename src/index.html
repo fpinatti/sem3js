@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Empty project</title>
+        <title>Sem3D</title>
         <meta charset="utf-8">
     </head>
     <body>
         <main>
             <world-3d>
-                <renderer-3d camera="" scene=""></renderer-3d>
+                <renderer-3d></renderer-3d>
+                <camera-3d></camera-3d>
                 <scene-3d></scene-3d>
+                <light-3d positionX="0" positionY="3" positionZ="5"></light-3d>
+                <mesh-3d 
+                    rotationX="2" 
+                    rotationY="1" 
+                    rotationZ=".5">
+                </mesh-3d>
             </world-3d>
         </main>
         <div id="app"></div>
-        <script src="bundle.js"></script>
+        <script src="bundle.js" type="module"></script>
     </body>
 </html>

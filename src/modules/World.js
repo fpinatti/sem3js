@@ -9,26 +9,8 @@ export class World extends HTMLElement {
 
     }
     waitDOMLoad() {
-        window.addEventListener('DOMContentLoaded', (event) => {
+        window.addEventListener('DOMContentLoaded', () => {
             console.log('DOM fully loaded and parsed');
-            this.waitRequiredElements();
-        });
-    }
-    waitRequiredElements() {
-        const scene = document.querySelector('scene-3d')
-        const renderer = document.querySelector('renderer-3d')
-
-        console.log('connected1', renderer)
-
-        const promises = [scene, renderer].map(socialButton => {
-            return customElements.whenDefined(socialButton.localName);
-        });
-
-        Promise.all(promises).then(() => {
-            // All social-button children are ready.
-            console.log('AAAAAAA');
-            renderer.setAttribute('scene', scene);
-            // renderer.setRenderer();
         });
     }
 }

@@ -7,9 +7,22 @@ export class SceneClass extends HTMLElement {
         console.log('3d scene constructor');
     }
     connectedCallback() {
-        let scene = new Scene();
-        // console.log('connected', document.querySelectorAll('scene-3d'))
+        this.worldScene = new Scene();
+        const renderer = document.querySelector('renderer-3d');
+        setTimeout(() => {
+            renderer.scene = this.worldScene;
+        }, 100);
     }
+
+    /* Scene */
+    get scene() {
+        return this.worldScene;
+    }
+
+    set scene(val) {
+        this.worldScene = val;
+    }
+
 }
 
 window.customElements.define('scene-3d', SceneClass);
