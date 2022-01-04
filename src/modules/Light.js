@@ -8,9 +8,14 @@ export class Light extends HTMLElement {
     }
     connectedCallback() {
         this.scene = document.querySelector('scene-3d');
-        this.addAmbientLight();
-        this.addDirectionalLight();
-        // console.log('connected', document.querySelectorAll('scene-3d'))
+        const type = this.getAttribute('type');
+        switch (type) {
+            case 'directional':
+                this.addDirectionalLight();
+                break;
+            default:
+                this.addAmbientLight();
+        }
     }
     addAmbientLight() {
         const light = new THREE.AmbientLight( 0x404040 ); // soft white light

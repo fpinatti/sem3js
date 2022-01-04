@@ -10,12 +10,35 @@
                 <renderer-3d></renderer-3d>
                 <camera-3d></camera-3d>
                 <scene-3d></scene-3d>
-                <light-3d positionX="0" positionY="3" positionZ="5"></light-3d>
-                <mesh-3d 
+                <light-3d 
+                    type="ambient"
+                />
+                <light-3d 
+                    type="directional"
+                    positionX="0" 
+                    positionY="3" 
+                    positionZ="5"
+                />
+                <model-3d
+                    material="toon||default||matcap"
+                    textureMap="path-to-texture"
+                    color="#ff00ee" 
                     rotationX="2" 
                     rotationY="1" 
-                    rotationZ=".5">
-                </mesh-3d>
+                    rotationZ=".5"
+                    positionX="2" 
+                    positionY="1" 
+                    positionZ=".5"
+                />
+                <model-3d
+                    color="#001fc0" 
+                    rotationX="-2" 
+                    rotationY="-1" 
+                    rotationZ="-.5"
+                    positionX="-2" 
+                    positionY="-1" 
+                    positionZ="-1.5"
+                />
             </world-3d>
         </main>
         <div id="app"></div>

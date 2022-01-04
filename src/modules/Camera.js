@@ -5,18 +5,26 @@ export class Camera extends HTMLElement {
     constructor() {
         super();
         this.controls = null;
-        // const 
-        // console.log('3d camera constructor');
+        this.worldCamera = null;
     }
     connectedCallback() {
         const renderer = document.querySelector('renderer-3d');
-        const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+        this.worldCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
         setTimeout(() => {
-            renderer.camera = camera;
-            this.controls = new OrbitControls( camera, renderer.renderer.domElement );
+            renderer.camera = this.worldCamera;
+            this.controls = new OrbitControls(this.worldCamera, renderer.renderer.domElement);
         }, 100);
 
-        camera.position.z = 5;
+        this.worldCamera.position.z = 5;
+    }
+
+    /* Camera */
+    get camera() {
+        return this.worldCamera;
+    }
+
+    set camera(val) {
+        this.worldCamera = val;
     }
 }
 

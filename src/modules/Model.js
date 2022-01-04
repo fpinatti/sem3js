@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-export class Mesh extends HTMLElement {
+export class Model extends HTMLElement {
     constructor() {
         super();
         // const 
@@ -11,14 +11,18 @@ export class Mesh extends HTMLElement {
     }
     createBox() {
         const scene = document.querySelector('scene-3d');
+        const color = this.getAttribute('color') || 0xffffff;
         const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshStandardMaterial( { color: 0x00ff00 } );
+        const material = new THREE.MeshStandardMaterial( { color } );
         const cube = new THREE.Mesh( geometry, material );
         cube.rotation.x = this.getAttribute('rotationX');
         cube.rotation.y = this.getAttribute('rotationY');
         cube.rotation.z = this.getAttribute('rotationZ');
+        cube.position.x = this.getAttribute('positionX');
+        cube.position.y = this.getAttribute('positionY');
+        cube.position.z = this.getAttribute('positionZ');
         scene.scene.add(cube);
     }
 }
 
-window.customElements.define('mesh-3d', Mesh);
+window.customElements.define('model-3d', Model);

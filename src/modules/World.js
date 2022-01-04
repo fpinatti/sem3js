@@ -5,6 +5,7 @@ export class World extends HTMLElement {
         console.log('3d world constructor');
     }
     connectedCallback() {
+        // this.attachShadow({mode: 'open'});
         this.waitDOMLoad();
 
     }

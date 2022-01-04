@@ -18,10 +18,31 @@ export class Renderer extends HTMLElement {
     async setRenderer() {
         console.log('set renderer called');
         this.worldRenderer = new THREE.WebGLRenderer();
-        this.worldRenderer.setSize( window.innerWidth, window.innerHeight );
+        this.worldRenderer.setSize( window.innerWidth, window.innerHeight, false );
         const world = document.querySelector('world-3d');
         await world.appendChild( this.worldRenderer.domElement );
+        window.addEventListener('resize', () => {
+            this.onWindowResize();
+        });
         this.tick();
+    }
+
+    onWindowResize() {
+        const canvas = this.worldRenderer.domElement;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        this.camera.updateProjectionMatrix();
+
+        const pixelRatio = window.devicePixelRatio;
+        const width  = canvas.clientWidth  * pixelRatio | 0;
+        const height = canvas.clientHeight * pixelRatio | 0;
+        const needResize = canvas.width !== width || canvas.height !== height;
+        // if (needResize) {
+        this.worldRenderer.setSize(width, height, false);
+        // }
+        // return needResize;
+        
     }
 
     // attributeChangedCallback(attribute, oldValue, newValue) {
