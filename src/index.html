@@ -12,45 +12,100 @@
                 <scene-3d></scene-3d>
                 <light-3d 
                     type="ambient"
+                    intensity="1"
                 />
                 <light-3d 
                     type="directional"
+                    intensity="1"
+                    castShadow="true"
                     positionX="0" 
-                    positionY="3" 
-                    positionZ="5"
+                    positionY="20" 
+                    positionZ="0"
+                />
+                <light-3d 
+                    type="point"
+                    intensity="1"
+                    castShadow="true"
+                    positionX="0" 
+                    positionY="4" 
+                    positionZ="0"
                 />
                 <model-3d
-                    material="toon||default||matcap"
                     type="box"
+                    castShadow="true"
+                    receiveShadow="true"
+                    material="matcap"
+                    matcap="img/matcap/04989A_0CE3E4_04D2D5_04C7C8-512px.png" 
                     width="1"
                     height="2"
                     depth="1"
-                    textureMap="path-to-texture"
-                    color="#ff00ee" 
-                    rotationX="2" 
-                    rotationY="1" 
-                    rotationZ=".5"
                     positionX="2" 
-                    positionY="1" 
+                    positionY="2" 
                     positionZ=".5"
                 />
                 <model-3d
                     color="#ffffff"
+                    material="map"
                     map="https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg" 
+                    castShadow="true"
                     type="sphere"
-                    radius="2"
-                    widthSegments="10"
-                    heightSegments="10"
+                    radius="1.5"
+                    widthSegments="40"
+                    heightSegments="40"
                     rotationX="-2" 
                     rotationY="-1" 
                     rotationZ="-.5"
                     positionX="-2" 
-                    positionY="-1" 
+                    positionY="3" 
                     positionZ="-1.5"
+                />
+                <model-3d
+                    color="#ffffff"
+                    material="toon"
+                    gradientMap="https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg" 
+                    type="sphere"
+                    radius="2"
+                    widthSegments="40"
+                    heightSegments="40"
+                    rotationX="-4" 
+                    rotationY="-2" 
+                    rotationZ="-.5"
+                    positionX="-5" 
+                    positionY="4" 
+                    positionZ="2"
+                />
+                <model-3d
+                    color="#ffffff"
+                    material="basic"
+                    map="https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg" 
+                    type="sphere"
+                    radius="1.2"
+                    widthSegments="40"
+                    heightSegments="40"
+                    rotationX="-3" 
+                    rotationY="-3" 
+                    rotationZ="-1.5"
+                    positionX="3" 
+                    positionY="5" 
+                    positionZ="3"
+                />
+                <model-3d
+                    color="#ffffff"
+                    material="standard"
+                    doubleside="1"
+                    receiveShadow="true"
+                    map="img/matcap/312D20_80675C_8B8C8B_85848C-512px.png" 
+                    type="plane"
+                    width="30"
+                    height="16"
+                    widthSegments="40"
+                    heightSegments="40"
+                    rotationX="-1.5"
+                    positionY="0"
                 />
             </world-3d>
         </main>
         <div id="app"></div>
-        <script src="bundle.js" type="module"></script>
+        <script src="app.js" type="module"></script>
     </body>
 </html>

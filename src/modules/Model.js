@@ -1,44 +1,46 @@
 import * as THREE from 'three';
-import { loadTexture } from '../utils/utils';
+import { createMaterial } from '../utils/materials';
 export class Model extends HTMLElement {
     constructor() {
         super();
     }
     connectedCallback() {
         this.mesh = null;
-        this.createMaterial();
+        this.material = createMaterial({
+            type: this.getAttribute('material'),
+            color: this.getAttribute('color') || 0xffffff,
+            map: this.getAttribute('map'),
+            gradientMap: this.getAttribute('gradientMap'),
+            side: this.getAttribute('doubleside') ? THREE.DoubleSide : 0,
+            matcap: this.getAttribute('matcap'),
+        });
         this.createGeometry();
         this.createMesh();
         this.setProperties();
     }
-    createMaterial() {
-        const color = this.getAttribute('color') || 0xffffff;
-        this.material = new THREE.MeshStandardMaterial( { 
-            color, 
-        } );
-
-        const map = this.getAttribute('map');
-        if (map) {
-            loadTexture(map)
-                .then((texture) => {
-                    this.material.map = texture;
-                    this.material.needsUpdate = true;
-                });
-        }
-    }
     createGeometry() {
         switch (this.getAttribute('type')) {
             case 'box':
-                const width = Number(this.getAttribute('width'));
-                const height = Number(this.getAttribute('height'));
-                const depth = Number(this.getAttribute('depth'));
-                this.geometry = new THREE.BoxGeometry(width, height, depth);
+                this.geometry = new THREE.BoxGeometry(
+                    this.getAttribute('width'),
+                    this.getAttribute('height'),
+                    this.getAttribute('depth')
+                );
+                break;
+            case 'plane':
+                this.geometry = new THREE.PlaneGeometry(
+                    this.getAttribute('width'),
+                    this.getAttribute('height'),
+                    this.getAttribute('widthSegments'),
+                    this.getAttribute('heightSegments')
+                );
                 break;
             case 'sphere':
-                const radius = Number(this.getAttribute('radius'));
-                const heightSegments = this.getAttribute('heightSegments');
-                const widthSegments = this.getAttribute('widthSegments');
-                this.geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
+                this.geometry = new THREE.SphereGeometry(
+                    this.getAttribute('radius'),
+                    this.getAttribute('widthSegments'),
+                    this.getAttribute('heightSegments')
+                );
                 break;
             default:
                 this.geometry = new THREE.BoxGeometry();
@@ -47,6 +49,10 @@ export class Model extends HTMLElement {
     createMesh() {
         const scene = document.querySelector('scene-3d');
         this.mesh = new THREE.Mesh( this.geometry, this.material );
+        this.mesh.castShadow = true;
+        this.mesh.receiveShadow = true;
+        // this.mesh.castShadow = this.getAttribute('castShadow');
+        // this.mesh.receiveShadow = this.getAttribute('receiveShadow');
         scene.scene.add(this.mesh);
     }
     setProperties() {

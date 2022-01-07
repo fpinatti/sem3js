@@ -19,6 +19,8 @@ export class Renderer extends HTMLElement {
         console.log('set renderer called');
         this.worldRenderer = new THREE.WebGLRenderer();
         this.worldRenderer.setSize( window.innerWidth, window.innerHeight, false );
+        this.worldRenderer.shadowMap.enabled = true;
+        this.worldRenderer.shadowMap.type = THREE.PCFSoftShadowMap;
         const world = document.querySelector('world-3d');
         await world.appendChild( this.worldRenderer.domElement );
         window.addEventListener('resize', () => {
@@ -37,7 +39,7 @@ export class Renderer extends HTMLElement {
         const pixelRatio = window.devicePixelRatio;
         const width  = canvas.clientWidth  * pixelRatio | 0;
         const height = canvas.clientHeight * pixelRatio | 0;
-        const needResize = canvas.width !== width || canvas.height !== height;
+        // const needResize = canvas.width !== width || canvas.height !== height;
         // if (needResize) {
         this.worldRenderer.setSize(width, height, false);
         // }
