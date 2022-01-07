@@ -89,7 +89,6 @@ export class Renderer extends HTMLElement {
         requestAnimationFrame(() => {
             this.tick();
         });
-        // console.log(JSON.stringify(this.camera));
         this.renderer.render(this.worldScene, this.worldCamera);
     };
 
