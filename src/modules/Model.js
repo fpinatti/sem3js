@@ -63,6 +63,10 @@ export class Model extends HTMLElement {
         this.mesh.position.y = this.getAttribute('positionY');
         this.mesh.position.z = this.getAttribute('positionZ');
     }
+
+    get instance() {
+        return this.mesh;
+    }
 }
 
 window.customElements.define('model-3d', Model);

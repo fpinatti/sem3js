@@ -19,6 +19,7 @@ const createMaterial = (config) => {
         default:
             mat = new THREE.MeshStandardMaterial();
             setMapTexture(mat, config);
+            setDisplacementMapTexture(mat, config);
         }
     mat.color = new THREE.Color(config.color);
     mat.side = config.side;
@@ -53,8 +54,21 @@ const setGradientTexture = (material, config) => {
     if (gradientMap) {
         loadTexture(gradientMap)
             .then((texture) => {
+                texture.minFilter = THREE.NearestFilter;
+                texture.magFilter = THREE.NearestFilter;
                 material.gradientMap = texture;
                 material.magFilter = THREE.NearestFilter;
+                material.needsUpdate = true;
+            });
+    }
+}
+
+const setDisplacementMapTexture = (material, config) => {
+    const displacementMap = config.displacementMap;
+    if (displacementMap) {
+        loadTexture(displacementMap)
+            .then((texture) => {
+                material.displacementMap = texture;
                 material.needsUpdate = true;
             });
     }

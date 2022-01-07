@@ -12,11 +12,13 @@
                 <scene-3d></scene-3d>
                 <light-3d 
                     type="ambient"
-                    intensity="1"
+                    color="#ffffff"
+                    intensity=".3"
                 />
                 <light-3d 
                     type="directional"
-                    intensity="1"
+                    color="#ffffff"
+                    intensity=".3"
                     castShadow="true"
                     positionX="0" 
                     positionY="20" 
@@ -24,7 +26,8 @@
                 />
                 <light-3d 
                     type="point"
-                    intensity="1"
+                    color="#ffffff"
+                    intensity=".2"
                     castShadow="true"
                     positionX="0" 
                     positionY="4" 
@@ -44,29 +47,27 @@
                     positionZ=".5"
                 />
                 <model-3d
+                    id="planet"
                     color="#ffffff"
                     material="map"
-                    map="https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg" 
+                    map="img/map/2k_earth_daymap.jpg" 
                     castShadow="true"
                     type="sphere"
                     radius="1.5"
                     widthSegments="40"
                     heightSegments="40"
-                    rotationX="-2" 
-                    rotationY="-1" 
-                    rotationZ="-.5"
                     positionX="-2" 
                     positionY="3" 
                     positionZ="-1.5"
                 />
                 <model-3d
-                    color="#ffffff"
+                    color="#0afab1"
                     material="toon"
-                    gradientMap="https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg" 
+                    gradientMap="img/map/2k_earth_daymap.jpg" 
                     type="sphere"
                     radius="2"
-                    widthSegments="40"
-                    heightSegments="40"
+                    widthSegments="6"
+                    heightSegments="6"
                     rotationX="-4" 
                     rotationY="-2" 
                     rotationZ="-.5"
@@ -77,7 +78,7 @@
                 <model-3d
                     color="#ffffff"
                     material="basic"
-                    map="https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg" 
+                    map="img/map/2k_earth_daymap.jpg" 
                     type="sphere"
                     radius="1.2"
                     widthSegments="40"
@@ -94,7 +95,8 @@
                     material="standard"
                     doubleside="1"
                     receiveShadow="true"
-                    map="img/matcap/312D20_80675C_8B8C8B_85848C-512px.png" 
+                    map="img/map/9_ground texture-seamless.jpg" 
+                    displacementMap="img/map/9_ground texture-seamless.jpg"
                     type="plane"
                     width="30"
                     height="16"
@@ -103,6 +105,12 @@
                     rotationX="-1.5"
                     positionY="0"
                 />
+                <animation-util
+                    target="planet"
+                    type="rotationY"
+                    duration="5"
+                >
+                </animation-util>
             </world-3d>
         </main>
         <div id="app"></div>

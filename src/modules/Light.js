@@ -21,7 +21,8 @@ export class Light extends HTMLElement {
         }
     }
     addAmbientLight() {
-        const light = new THREE.AmbientLight( 0x404040 ); // soft white light
+        const light = new THREE.AmbientLight(); // soft white light
+        light.color = new THREE.Color(this.getAttribute('color'));
         light.intensity = 1;
         this.scene.scene.add(light);
     }
