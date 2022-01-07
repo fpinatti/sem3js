@@ -8,7 +8,11 @@
         <main>
             <world-3d>
                 <renderer-3d></renderer-3d>
-                <camera-3d></camera-3d>
+                <camera-3d 
+                    id="mainCamera"
+                    lookAt="0"
+                >
+                </camera-3d>
                 <scene-3d></scene-3d>
                 <light-3d 
                     type="ambient"
@@ -105,12 +109,29 @@
                     rotationX="-1.5"
                     positionY="0"
                 />
+                <model-file 
+                    url="models/glTF/BoomBox.gltf"
+                    scaleX="100"
+                    scaleY="100"
+                    scaleZ="100"
+                    positionX="0"
+                    positionY="1"
+                    positionZ="0"
+                >
+
+                </model-file>
                 <animation-util
                     target="planet"
                     type="rotationY"
                     duration="5"
                 >
                 </animation-util>
+                <!-- <animation-util
+                    target="mainCamera"
+                    type="rotationY"
+                    duration="10"
+                >
+                </animation-util> -->
             </world-3d>
         </main>
         <div id="app"></div>
