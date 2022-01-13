@@ -8,6 +8,10 @@ const createMaterial = (config) => {
             mat = new THREE.MeshBasicMaterial();
             setMapCapTexture(mat, config);
             break;
+        case 'sprite':
+            mat = new THREE.SpriteMaterial();
+            setMapTexture(mat, config);
+            break;
         case 'toon':
             mat = new THREE.MeshToonMaterial();
             setGradientTexture(mat, config);

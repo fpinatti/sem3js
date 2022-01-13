@@ -1,11 +1,154 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Empty project</title>
+        <title>Sem3D</title>
         <meta charset="utf-8">
     </head>
     <body>
+        <main>
+            <world-3d>
+                <renderer-3d></renderer-3d>
+                <camera-3d 
+                    id="mainCamera"
+                    lookAt="0"
+                >
+                </camera-3d>
+                <scene-3d></scene-3d>
+                <light-3d 
+                    type="ambient"
+                    color="#ffffff"
+                    intensity=".3"
+                />
+                <light-3d 
+                    type="directional"
+                    color="#ffffff"
+                    intensity=".3"
+                    castShadow="true"
+                    positionX="0" 
+                    positionY="20" 
+                    positionZ="0"
+                />
+                <light-3d 
+                    type="point"
+                    color="#ffffff"
+                    intensity=".2"
+                    castShadow="true"
+                    positionX="0" 
+                    positionY="4" 
+                    positionZ="0"
+                />
+                <model-3d
+                    type="box"
+                    castShadow="true"
+                    receiveShadow="true"
+                    material="matcap"
+                    matcap="img/matcap/04989A_0CE3E4_04D2D5_04C7C8-512px.png" 
+                    width="1"
+                    height="2"
+                    depth="1"
+                    positionX="2" 
+                    positionY="2" 
+                    positionZ=".5"
+                />
+                <model-3d
+                    id="planet"
+                    color="#ffffff"
+                    material="map"
+                    map="img/map/2k_earth_daymap.jpg" 
+                    castShadow="true"
+                    type="sphere"
+                    radius="1.5"
+                    widthSegments="40"
+                    heightSegments="40"
+                    positionX="-2" 
+                    positionY="3" 
+                    positionZ="-1.5"
+                />
+                <model-3d
+                    id="planet2"
+                    color="#ffffff"
+                    material="map"
+                    map="img/map/2k_earth_daymap.jpg" 
+                    castShadow="true"
+                    type="sphere"
+                    radius=".5"
+                    widthSegments="40"
+                    heightSegments="40"
+                    positionX="-5" 
+                    positionY="10" 
+                    positionZ="-3.5"
+                />
+                <model-3d
+                    color="#0afab1"
+                    material="toon"
+                    gradientMap="img/map/2k_earth_daymap.jpg" 
+                    type="sphere"
+                    radius="2"
+                    widthSegments="6"
+                    heightSegments="6"
+                    rotationX="-4" 
+                    rotationY="-2" 
+                    rotationZ="-.5"
+                    positionX="-5" 
+                    positionY="4" 
+                    positionZ="2"
+                />
+                <model-3d
+                    color="#ffffff"
+                    material="basic"
+                    map="img/map/2k_earth_daymap.jpg" 
+                    type="sphere"
+                    radius="1.2"
+                    widthSegments="40"
+                    heightSegments="40"
+                    rotationX="-3" 
+                    rotationY="-3" 
+                    rotationZ="-1.5"
+                    positionX="3" 
+                    positionY="5" 
+                    positionZ="3"
+                />
+                <model-3d
+                    color="#ffffff"
+                    material="standard"
+                    doubleside="1"
+                    receiveShadow="true"
+                    map="img/map/9_ground texture-seamless.jpg" 
+                    displacementMap="img/map/9_ground texture-seamless.jpg"
+                    type="plane"
+                    width="30"
+                    height="16"
+                    widthSegments="40"
+                    heightSegments="40"
+                    rotationX="-1.5"
+                    positionY="0"
+                />
+                <model-file 
+                    url="models/glTF/BoomBox.gltf"
+                    scaleX="100"
+                    scaleY="100"
+                    scaleZ="100"
+                    positionX="0"
+                    positionY="1"
+                    positionZ="0"
+                >
+
+                </model-file>
+                <animation-util
+                    target="planet"
+                    type="rotationY"
+                    duration="5"
+                >
+                </animation-util>
+                <!-- <animation-util
+                    target="mainCamera"
+                    type="rotationY"
+                    duration="10"
+                >
+                </animation-util> -->
+            </world-3d>
+        </main>
         <div id="app"></div>
-        <script src="bundle.js"></script>
+        <script src="app.js" type="module"></script>
     </body>
 </html>
